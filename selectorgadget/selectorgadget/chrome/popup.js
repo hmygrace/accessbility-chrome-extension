@@ -1,8 +1,8 @@
 let changeColor = document.getElementById('changeColor');
 
 chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
+  changeColor.style.backgroundColor = '#3aa757';//data.color;
+  changeColor.setAttribute('value', '#3aa757'/*data.color*/);
 });
 changeColor.onclick = function(element) {
     let color = element.target.value;
@@ -13,11 +13,25 @@ changeColor.onclick = function(element) {
     });
 };
 
-window.sg_options = {
-  remote_interface: 'sg_interface.js'
+let chooseElement = document.getElementById('chooseElement');
+chooseElement.addEventListener('click', cssSelector);
+
+function cssSelector(tab){
+  chrome.tabs.insertCSS(tab.id, { file: "combined.css" });
+  chrome.tabs.executeScript(tab.id, { file: "combined.js" });
 }
 
-window.selector_gadget = new SelectorGadget();
+// chooseElement.onClicked.addListener(function(tab) {
+//   chrome.tabs.insertCSS(tab.id, { file: "combined.css" });
+//   chrome.tabs.executeScript(tab.id, { file: "combined.js" });
+// });
+
+
+// window.sg_options = {
+//   remote_interface: 'sg_interface.js'
+// }
+
+// window.selector_gadget = new SelectorGadget();
 // let changeColor2 = document.getElementById('changeColor2');
 
 // chrome.storage.sync.get('color', function(data) {
