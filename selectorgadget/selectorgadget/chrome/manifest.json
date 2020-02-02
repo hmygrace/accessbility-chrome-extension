@@ -11,7 +11,7 @@
     "tabs", "http://*/*", "https://*/*","activeTab", "declarativeContent", "storage"
   ],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["scripts/background.js"],
     "persistent": false
   },
   "browser_action": {
@@ -20,7 +20,7 @@
       "38": "icons/action38x38.png"
     },
     "default_title": "SelectorGadget",
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html"
   },
-  "options_page": "options.html"
+  "options_page": "options/options.html"
 }

@@ -1,24 +1,56 @@
+
+
 let changeColor = document.getElementById('changeColor');
 
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = '#3aa757';//data.color;
-  changeColor.setAttribute('value', '#3aa757'/*data.color*/);
-});
-changeColor.onclick = function(element) {
-    let color = element.target.value;
+changeColor.onclick = function() {
+    var newColor = document.getElementById('color-selector').value;
+    chrome.storage.sync.set({color: newColor}, function() {
+          console.log('The color is '+newColor);
+        });
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.executeScript(
             tabs[0].id,
-            {code: 'document.body.style.backgroundColor = "' + color + '";'});
+            {file: "scripts/color-change.js"});
     });
 };
+
+let changeFontSize = document.getElementById('changeFontSize');
+
+changeFontSize.onclick = function() {
+    var newSize = document.getElementById('font-size-selector').value;
+    chrome.storage.sync.set({fontSize: newSize}, function() {
+          console.log('The size is '+newSize);
+        });
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.executeScript(
+            tabs[0].id,
+            {file: "scripts/fontSize-change.js"});
+    });
+};
+
+let changeFontWeight = document.getElementById('changeFontWeight');
+
+changeFontWeight.onclick = function() {
+    var newWeight = document.getElementById('font-weight-selector').value;
+    chrome.storage.sync.set({fontWeight: newWeight}, function() {
+          console.log('The weight is '+newWeight);
+        });
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.executeScript(
+            tabs[0].id,
+            {file: "scripts/fontWeight-change.js"});
+    });
+};
+
 
 let chooseElement = document.getElementById('chooseElement');
 chooseElement.addEventListener('click', cssSelector);
 
 function cssSelector(tab){
-  chrome.tabs.insertCSS(tab.id, { file: "combined.css" });
-  chrome.tabs.executeScript(tab.id, { file: "combined.js" });
+  chrome.tabs.insertCSS(tab.id, { file: "../combined.css" });
+  chrome.tabs.executeScript(tab.id, { file: "../combined.js" });
+  // chrome.tabs.executeScript(tab.id, { file: "element-select.js" });
+  
 }
 
 // chooseElement.onClicked.addListener(function(tab) {

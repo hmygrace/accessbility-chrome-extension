@@ -1,0 +1,26 @@
+{
+  "name": "Chrome Helper",
+  "version": "1",
+  "manifest_version": 2,
+  "description": "Simulates colorblindness in your web browser.",
+  "homepage_url": "https://github.com/oftheheadland",
+  "background": {
+    "scripts": [
+      "script/background.js"
+    ],
+    "persistent": true
+  },
+  "icons": {
+    "16": "images/eyecon.png",
+    "48": "images/eyecon.png",
+    "128": "images/eyecon.png"
+  },
+  "browser_action": {
+    "default_title": "Chrome Helper",
+    "default_popup": "popup/popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
