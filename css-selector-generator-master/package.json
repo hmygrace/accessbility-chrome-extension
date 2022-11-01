@@ -10,7 +10,7 @@
     "test": "grunt dev"
   },
   "devDependencies": {
-    "coffeelint": "1.15.7",
+    "coffeelint": "1.16.2",
     "grunt": "^1.0.3",
     "grunt-bump": "^0.8.0",
     "grunt-coffeelint": "^0.0.15",
